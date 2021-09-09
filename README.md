@@ -11,12 +11,12 @@ Repositori ini adalah repositiori yang berisi tugas proyek akhir untuk bootcamp 
 ## Instalasi
 
 ```
-# Jika folder node_modules & depencies terkait, belum ada
+# Jika folder node_modules & dependencies terkait belum ada
 # Instal dependencies NPM
 npm install
 ```
 
-# Menjalankan App
+## Menjalankan App
 
 ```
 npm run serve
