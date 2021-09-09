@@ -2,25 +2,28 @@
 
 ## Deskripsi
 
-Repositori ini adalah repositiori yang berisi tugas proyek akhir untuk bootcamp online VueJS (Batch 27) di SanberCode.
+Repositori ini adalah repositiori yang berisi tugas proyek akhir untuk bootcamp online VueJS (Batch 27) di SanberCode. Proyek ini menggunakan VueJS 2 & Vue CLI.
 
 # Prasyarat
 
-- Vue CLI
 - NPM
 
-# Instalasi
+## Instalasi
 
 ```
-# Menginstal Vue CLI
-# npm instal; -g @vue/cli
-
-# Menginstal dependencies NPM
+# Jika folder node_modules & depencies terkait, belum ada
+# Instal dependencies NPM
 npm install
+```
+
+# Menjalankan App
+
+```
+npm run serve
 ```
 
 ## Anggota Kelompok
 
-- Roland Brilianto
 - Asep Solahudin
 - Panji Ahmad Nurhusni
+- Roland Brilianto
