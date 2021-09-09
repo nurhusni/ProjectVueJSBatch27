@@ -1,4 +1,4 @@
-<p align="center"><strong>Project VueJS Batch 27</strong></p>
+# Project VueJS Batch 27
 
 ## Deskripsi
 
