@@ -1,34 +1,31 @@
 <template>
   <v-container class="ma-0 pa-0" grid-list-sm>
     <div class="text-right">
-      <v-btn small text to="/blogs" class="blue--text">
-        All Blogs <v-icon>mdi-chevron-right</v-icon>
-      </v-btn>
+      <v-btn small text to="/blogs" class="blue--text"> All Blogs <v-icon>mdi-chevron-right</v-icon> </v-btn>
     </div>
 
     <v-dialog v-model="formPost" max-width="600px">
       <v-card>
-        <v-card-title>
-          <span class="text-h5">Buat Post Baru</span>
-        </v-card-title>
+        <div v-if="statusSPAN == 'tambahBlog'">
+          <v-card-title>
+            <span class="text-h5">Buat Post Baru</span>
+          </v-card-title>
+        </div>
+        <div v-else-if="statusSPAN == 'updateBlog'">
+          <v-card-title>
+            <span class="text-h5">Edit Post</span>
+          </v-card-title>
+        </div>
 
         <v-form ref="form">
           <v-card-text>
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field
-                    v-model="title"
-                    label="Judul"
-                    required
-                  ></v-text-field>
+                  <v-text-field v-model="title" label="Judul" required></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-textarea
-                    v-model="description"
-                    label="Isi Post di Sini"
-                    required
-                  ></v-textarea>
+                  <v-textarea v-model="description" label="Isi Post di Sini" required></v-textarea>
                 </v-col>
               </v-row>
             </v-container>
@@ -37,11 +34,8 @@
             <v-btn color="red" text @click="formPost = false">
               Batal
             </v-btn>
-            <v-btn
-              color="blue"
-              text
-              @click="status == 'submit' ? submitForm() : updatePost(blogId)"
-            >
+
+            <v-btn color="blue" text @click="status == 'submit' ? submitForm() : updatePost(blogId)">
               Simpan
             </v-btn>
           </v-card-actions>
@@ -50,14 +44,7 @@
     </v-dialog>
 
     <v-layout wrap>
-      <blog-item-component
-        v-for="blog in blogs"
-        :location="location"
-        :key="`blog-` + blog.id"
-        :blog="blog"
-        v-on:editPost="editPost($event)"
-        v-on:deletePost="deletePost($event)"
-      ></blog-item-component>
+      <blog-item-component v-for="blog in blogs" :location="location" :key="`blog-` + blog.id" :blog="blog" v-on:editPost="editPost($event)" v-on:deletePost="deletePost($event)"></blog-item-component>
     </v-layout>
   </v-container>
 </template>
@@ -75,6 +62,7 @@ export default {
     apiDomain: "https://demo-api-vue.sanbercloud.com/",
     blogs: [],
     location: "home",
+    statusSPAN: "tambahBlog",
   }),
   components: {
     "blog-item-component": BlogItemComponent,
@@ -116,6 +104,7 @@ export default {
       this.status = "update";
       this.blogId = blog.id;
       this.formPost = true;
+      this.statusSPAN = "updateBlog";
     },
 
     updatePost(blogId) {
@@ -134,6 +123,7 @@ export default {
         .then((response) => {
           this.go();
           console.log(response);
+          this.formPost = false;
           alert("Post diedit");
         })
         .catch((error) => {
@@ -175,8 +165,9 @@ export default {
           this.clearForm();
           this.go();
           console.log(response);
-          alert("Berhasil");
           this.formPost = false;
+          this.statusSPAN = "tambahBlog";
+          alert("Berhasil");
         })
         .catch((error) => {
           console.log(error);

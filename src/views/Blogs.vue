@@ -2,33 +2,32 @@
   <v-container class="ma-0 pa-0" grid-list-sm>
     <v-dialog v-model="formPost" max-width="600px">
       <template v-slot:activator="{ on, attrs }" v-if="!guest">
-        <v-btn @click="clearForm" color="primary" v-bind="attrs" v-on="on">
+        <v-btn @click="clearForm" color="primary" v-bind="attrs" v-on="on" statusSPAN="tambahBlog">
           Buat Post
         </v-btn>
       </template>
 
       <v-card>
-        <v-card-title>
-          <span class="text-h5">Buat Post Baru</span>
-        </v-card-title>
+        <div v-if="statusSPAN == 'tambahBlog'">
+          <v-card-title>
+            <span class="text-h5">Buat Post Baru</span>
+          </v-card-title>
+        </div>
+        <div v-else-if="statusSPAN == 'updateBlog'">
+          <v-card-title>
+            <span class="text-h5">Edit Post</span>
+          </v-card-title>
+        </div>
 
         <v-form ref="form">
           <v-card-text>
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field
-                    v-model="title"
-                    label="Judul"
-                    required
-                  ></v-text-field>
+                  <v-text-field v-model="title" label="Judul" required></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-textarea
-                    v-model="description"
-                    label="Isi Post di Sini"
-                    required
-                  ></v-textarea>
+                  <v-textarea v-model="description" label="Isi Post di Sini" required></v-textarea>
                 </v-col>
               </v-row>
             </v-container>
@@ -37,11 +36,7 @@
             <v-btn color="red" text @click="formPost = false">
               Batal
             </v-btn>
-            <v-btn
-              color="blue"
-              text
-              @click="status == 'submit' ? submitForm() : updatePost(blogId)"
-            >
+            <v-btn color="blue" text @click="status == 'submit' ? submitForm() : updatePost(blogId)">
               Simpan
             </v-btn>
           </v-card-actions>
@@ -50,21 +45,9 @@
     </v-dialog>
 
     <v-layout wrap>
-      <blog-item-component
-        v-for="blog in blogs"
-        :location="location"
-        :key="`blog-` + blog.id"
-        :blog="blog"
-        v-on:editPost="editPost($event)"
-        v-on:deletePost="deletePost($event)"
-      ></blog-item-component>
+      <blog-item-component v-for="blog in blogs" :location="location" :key="`blog-` + blog.id" :blog="blog" v-on:editPost="editPost($event)" v-on:deletePost="deletePost($event)"></blog-item-component>
     </v-layout>
-    <v-pagination
-      v-model="page"
-      @input="go"
-      :length="lengthPage"
-      :total-visible="perPage"
-    ></v-pagination>
+    <v-pagination v-model="page" @input="go" :length="lengthPage" :total-visible="perPage"></v-pagination>
   </v-container>
 </template>
 
@@ -84,6 +67,7 @@ export default {
     lengthPage: 0,
     perPage: 0,
     location: "blog-page",
+    statusSPAN: "tambahBlog",
   }),
 
   components: {
@@ -128,6 +112,7 @@ export default {
       this.status = "update";
       this.blogId = blog.id;
       this.formPost = true;
+      this.statusSPAN = "updateBlog";
     },
 
     updatePost(blogId) {
@@ -146,6 +131,7 @@ export default {
         .then((response) => {
           this.go();
           console.log(response);
+          this.formPost = false;
           alert("Post diedit");
         })
         .catch((error) => {
@@ -184,11 +170,12 @@ export default {
 
       this.axios(config)
         .then((response) => {
+          this.statusSPAN = "tambahBlog";
           this.clearForm();
           this.go();
           console.log(response);
-          alert("Berhasil");
           this.formPost = false;
+          alert("Berhasil");
         })
         .catch((error) => {
           console.log(error);
