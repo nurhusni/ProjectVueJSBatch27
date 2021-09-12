@@ -22,7 +22,7 @@
         </v-list-item-avatar>
       </v-list-item>
 
-      <v-card-actions v-if="userLoggedIn">
+      <v-card-actions v-if="!guest">
         <v-btn :to="'/blog/' + blog.id" outlined rounded text>
           Baca
         </v-btn>
@@ -62,8 +62,9 @@ export default {
 
   props: ["blog"],
 
-  methods: {
+  computed: {
     ...mapGetters({
+      guest: "auth/guest",
       user: "auth/user",
       token: "auth/token",
     }),
