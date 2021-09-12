@@ -22,14 +22,26 @@
         </v-list-item-avatar>
       </v-list-item>
 
-      <v-card-actions v-if="!guest">
-        <v-btn :to="'/blog/' + blog.id" outlined rounded text>
+      <v-card-actions>
+        <v-btn :to="'/blog/' + blog.id" rounded color="primary">
           Baca
         </v-btn>
-        <v-btn rounded color="primary" @click="$emit('editPost', blog)">
+        <v-btn
+          rounded
+          text
+          color="primary"
+          @click="$emit('editPost', blog)"
+          v-if="!guest"
+        >
           Edit
         </v-btn>
-        <v-btn rounded color="error" @click="$emit('deletePost', blog.id)">
+        <v-btn
+          rounded
+          text
+          color="error"
+          @click="$emit('deletePost', blog.id)"
+          v-if="!guest"
+        >
           Hapus
         </v-btn>
       </v-card-actions>
