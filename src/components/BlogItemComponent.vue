@@ -1,29 +1,18 @@
 <template>
   <v-flex xs6>
-    <v-card :to="'/blog/' + blog.id" class="mx-auto" max-width="500" outlined>
+    <v-card class="mx-auto" max-width="500" outlined>
       <v-list-item three-line>
         <v-list-item-content>
           <div class="text-overline mb-4"></div>
-          <v-list-item-title class="text-h5 mb-1" v-text="blog.title">
-          </v-list-item-title>
+          <v-list-item-title class="text-h5 mb-1" v-text="blog.title"> </v-list-item-title>
           <v-list-item-subtitle>{{ blog.description }}</v-list-item-subtitle>
         </v-list-item-content>
 
-        <v-list-item-avatar tile size="80" color="grey"
-          ><v-img
-            :src="
-              blog.photo
-                ? apiDomain + blog.photo
-                : 'https://picsum.photos/200/300'
-            "
-            class="white--text"
-          >
-          </v-img>
-        </v-list-item-avatar>
+        <v-list-item-avatar tile size="80" color="grey"><v-img :src="blog.photo ? apiDomain + blog.photo : 'https://picsum.photos/200/300'" class="white--text"> </v-img> </v-list-item-avatar>
       </v-list-item>
 
       <v-card-actions>
-        <v-btn outlined rounded text>
+        <v-btn :to="'/blog/' + blog.id" outlined rounded text>
           Baca
         </v-btn>
         <v-btn rounded color="primary" @click="$emit('editPost', blog)">
