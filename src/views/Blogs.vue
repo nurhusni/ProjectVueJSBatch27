@@ -1,7 +1,5 @@
 <template>
   <v-container class="ma-0 pa-0" grid-list-sm>
-    <v-subheader>All Blogs</v-subheader>
-
     <v-dialog v-model="formPost" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn @click="clearForm" color="primary" v-bind="attrs" v-on="on">
@@ -54,9 +52,9 @@
     <v-layout wrap>
       <blog-item-component
         v-for="blog in blogs"
+        :location="location"
         :key="`blog-` + blog.id"
         :blog="blog"
-        :edit="true"
         v-on:editPost="editPost($event)"
         v-on:deletePost="deletePost($event)"
       ></blog-item-component>
@@ -84,6 +82,7 @@ export default {
     page: 0,
     lengthPage: 0,
     perPage: 0,
+    location: "blog-page",
   }),
 
   components: {
