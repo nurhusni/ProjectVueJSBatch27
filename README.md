@@ -11,7 +11,7 @@ Repositori ini adalah repositiori yang berisi tugas proyek akhir untuk bootcamp 
 ## Instalasi
 
 ```bash
-# Jika folder node_modules & dependencies terkait belum ada, maka
+# Jika folder node_modules belum ada
 # Instal dependencies NPM
 npm install
 ```
@@ -19,6 +19,7 @@ npm install
 ## Menjalankan App
 
 ```bash
+# Menjalankan app dalam development mode
 npm run serve
 ```
 

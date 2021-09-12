@@ -29,8 +29,8 @@
       <v-list>
         <v-list-item v-if="!guest">
           <v-list-item-avatar>
-            <v-img
-              ><img
+            <v-img>
+              <img
                 :src="
                   user.photo_profile
                     ? apiDomain + user.photo_profile
@@ -48,21 +48,31 @@
             <v-icon left>mdi-lock</v-icon>
             Login
           </v-btn>
-          <v-btn block color="success">
+          <v-btn block color="success" class="mb-1">
             <v-icon left>mdi-account</v-icon>
             Register
           </v-btn>
+          <!-- <v-btn block color="success">
+            <v-icon left>mdi-write</v-icon>
+            Create a New Blog
+          </v-btn> -->
         </div>
 
         <v-divider></v-divider>
 
-        <v-list-item v-for="(item, index) in menus" :key="`menu-${index}`" :to="item.route">
+        <v-list-item
+          v-for="(item, index) in menus"
+          :key="`menu-${index}`"
+          :to="item.route"
+        >
           <v-list-item-icon>
             <v-icon left class="white--text">{{ item.icon }}</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
+            <v-list-item-title class="white--text">{{
+              item.title
+            }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
