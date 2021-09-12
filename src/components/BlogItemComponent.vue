@@ -26,6 +26,9 @@
         <v-btn outlined rounded text>
           Baca
         </v-btn>
+        <v-btn rounded color="primary" @click="$emit('editPost', blog)">
+          Edit
+        </v-btn>
         <v-btn rounded color="error" @click="$emit('deletePost', blog.id)">
           Hapus
         </v-btn>
