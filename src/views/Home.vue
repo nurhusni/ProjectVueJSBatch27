@@ -125,6 +125,7 @@ export default {
           console.log(response);
           this.formPost = false;
           alert("Post diedit");
+          this.statusSPAN = "tambahBlog";
         })
         .catch((error) => {
           console.log(error);

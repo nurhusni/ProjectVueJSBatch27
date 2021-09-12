@@ -2,7 +2,7 @@
   <v-container class="ma-0 pa-0" grid-list-sm>
     <v-dialog v-model="formPost" max-width="600px">
       <template v-slot:activator="{ on, attrs }" v-if="!guest">
-        <v-btn @click="clearForm" color="primary" v-bind="attrs" v-on="on" statusSPAN="tambahBlog">
+        <v-btn @click="clearForm" color="primary" v-bind="attrs" v-on="on">
           Buat Post
         </v-btn>
       </template>
@@ -133,6 +133,7 @@ export default {
           console.log(response);
           this.formPost = false;
           alert("Post diedit");
+          this.statusSPAN = "tambahBlog";
         })
         .catch((error) => {
           console.log(error);
