@@ -6,7 +6,7 @@
       </v-btn>
     </div>
 
-    <v-dialog v-model="formPost" persistent max-width="600px">
+    <v-dialog v-model="formPost" max-width="600px">
       <v-card>
         <v-card-title>
           <span class="text-h5">Buat Post Baru</span>
@@ -176,6 +176,7 @@ export default {
           this.go();
           console.log(response);
           alert("Berhasil");
+          this.formPost = false;
         })
         .catch((error) => {
           console.log(error);

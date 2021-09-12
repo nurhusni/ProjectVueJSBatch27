@@ -1,7 +1,7 @@
 <template>
   <v-container class="ma-0 pa-0" grid-list-sm>
-    <v-dialog v-model="formPost" persistent max-width="600px">
-      <template v-slot:activator="{ on, attrs }">
+    <v-dialog v-model="formPost" max-width="600px">
+      <template v-slot:activator="{ on, attrs }" v-if="!guest">
         <v-btn @click="clearForm" color="primary" v-bind="attrs" v-on="on">
           Buat Post
         </v-btn>
@@ -70,6 +70,7 @@
 
 <script>
 import BlogItemComponent from "../components/BlogItemComponent.vue";
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
     title: "",
@@ -87,6 +88,12 @@ export default {
 
   components: {
     "blog-item-component": BlogItemComponent,
+  },
+
+  computed: {
+    ...mapGetters({
+      guest: "auth/guest",
+    }),
   },
 
   methods: {
@@ -181,12 +188,14 @@ export default {
           this.go();
           console.log(response);
           alert("Berhasil");
+          this.formPost = false;
         })
         .catch((error) => {
           console.log(error);
         });
     },
   },
+
   created() {
     this.go();
   },
