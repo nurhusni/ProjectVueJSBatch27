@@ -56,7 +56,6 @@
 import { mapGetters } from "vuex";
 export default {
   data: () => ({
-    userLoggedIn: false,
     apiDomain: "http://demo-api-vue.sanbercloud.com/",
   }),
 
@@ -65,13 +64,7 @@ export default {
   computed: {
     ...mapGetters({
       guest: "auth/guest",
-      user: "auth/user",
-      token: "auth/token",
     }),
-  },
-
-  mounted: function() {
-    this.userLoggedIn = this.user;
   },
 };
 </script>
