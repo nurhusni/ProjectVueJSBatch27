@@ -11,6 +11,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     Login: () => import("./Login.vue"),
+    regis: () => import("./Regis.vue"),
   },
   computed: {
     ...mapGetters({
