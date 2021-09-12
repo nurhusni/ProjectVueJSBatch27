@@ -48,7 +48,7 @@
             <v-icon left>mdi-lock</v-icon>
             Login
           </v-btn>
-          <v-btn block color="success">
+          <v-btn block color="success" @click="regis">
             <v-icon left>mdi-account</v-icon>
             Register
           </v-btn>
@@ -164,12 +164,9 @@ export default {
     },
     login() {
       this.setDialogComponent({ component: "login" });
-      // this.guest = false
-      // this.setAlert({
-      //   status: true,
-      //   color: 'success',
-      //   text: 'Anda berhasil Login'
-      // })
+    },
+    regis() {
+      this.setDialogComponent({ component: "regis" });
     },
     ...mapActions({
       setAlert: "alert/set",
