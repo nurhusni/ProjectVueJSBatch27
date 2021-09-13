@@ -24,10 +24,18 @@
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field v-model="title" label="Judul" required></v-text-field>
+                  <v-text-field
+                    v-model="title"
+                    label="Judul"
+                    required
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-textarea v-model="description" label="Isi Post di Sini" required></v-textarea>
+                  <v-textarea
+                    v-model="description"
+                    label="Isi Post di Sini"
+                    required
+                  ></v-textarea>
                 </v-col>
               </v-row>
             </v-container>
@@ -36,7 +44,11 @@
             <v-btn color="red" text @click="formPost = false">
               Batal
             </v-btn>
-            <v-btn color="blue" text @click="status == 'submit' ? submitForm() : updatePost(blogId)">
+            <v-btn
+              color="blue"
+              text
+              @click="status == 'submit' ? submitForm() : updatePost(blogId)"
+            >
               Simpan
             </v-btn>
           </v-card-actions>
@@ -45,9 +57,21 @@
     </v-dialog>
 
     <v-layout wrap>
-      <blog-item-component v-for="blog in blogs" :location="location" :key="`blog-` + blog.id" :blog="blog" v-on:editPost="editPost($event)" v-on:deletePost="deletePost($event)"></blog-item-component>
+      <blog-item-component
+        v-for="blog in blogs"
+        :location="location"
+        :key="`blog-` + blog.id"
+        :blog="blog"
+        v-on:editPost="editPost($event)"
+        v-on:deletePost="deletePost($event)"
+      ></blog-item-component>
     </v-layout>
-    <v-pagination v-model="page" @input="go" :length="lengthPage" :total-visible="perPage"></v-pagination>
+    <v-pagination
+      v-model="page"
+      @input="go"
+      :length="lengthPage"
+      :total-visible="perPage"
+    ></v-pagination>
   </v-container>
 </template>
 
