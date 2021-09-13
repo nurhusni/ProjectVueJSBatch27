@@ -37,13 +37,6 @@
                     required
                   ></v-textarea>
                 </v-col>
-                <v-col cols="12">
-                  <v-file-input
-                    v-model="photo"
-                    accept="image/*"
-                    label="Unggah Foto"
-                  ></v-file-input>
-                </v-col>
               </v-row>
             </v-container>
           </v-card-text>
@@ -67,7 +60,6 @@
     <v-layout wrap>
       <blog-item-component
         v-for="blog in blogs"
-        :location="location"
         :key="`blog-` + blog.id"
         :blog="blog"
         v-on:editPost="editPost($event)"
@@ -89,7 +81,6 @@ export default {
     formPost: false,
     apiDomain: "https://demo-api-vue.sanbercloud.com/",
     blogs: [],
-    location: "home",
     statusSPAN: "tambahBlog",
   }),
   components: {

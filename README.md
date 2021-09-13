@@ -2,7 +2,7 @@
 
 ## Deskripsi
 
-Repositori ini adalah repositiori yang berisi tugas proyek akhir untuk bootcamp online VueJS (Batch 27) di SanberCode. Proyek ini menggunakan VueJS 2 & Vue CLI.
+Repositori ini adalah repositiori yang berisi tugas proyek akhir untuk bootcamp online VueJS (Batch 27) di SanberCode. Proyek ini menggunakan VueJS 2, Vue CLI, Vuetify, dan Vue Router.
 
 ## Link
 
@@ -19,7 +19,6 @@ https://drive.google.com/drive/folders/1ZDLy0NgzYNPAgzMFaMSSyB2c28cIkObm?usp=sha
 ## Instalasi
 
 ```bash
-# Jika folder node_modules belum ada
 # Instal dependencies NPM
 npm install
 ```
@@ -27,8 +26,11 @@ npm install
 ## Menjalankan App
 
 ```bash
-# Menjalankan app dalam development mode
+# Menjalankan app dalam development build
 npm run serve
+
+# Menjalankan app dalam production build
+npm run build
 ```
 
 ## Anggota Kelompok

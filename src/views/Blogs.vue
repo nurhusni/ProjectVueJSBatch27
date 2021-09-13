@@ -59,7 +59,6 @@
     <v-layout wrap>
       <blog-item-component
         v-for="blog in blogs"
-        :location="location"
         :key="`blog-` + blog.id"
         :blog="blog"
         v-on:editPost="editPost($event)"
@@ -90,7 +89,6 @@ export default {
     page: 0,
     lengthPage: 0,
     perPage: 0,
-    location: "blog-page",
     statusSPAN: "tambahBlog",
   }),
 
